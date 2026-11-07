@@ -58,11 +58,53 @@
         </div>
     </section>
 
+    <section class="calculator">
+        <div class="season">✦ RANK CALCULATOR ✦</div>
+
+        <h2>РАССЧИТАЙ СВОЙ <span>БУСТ</span></h2>
+
+        <div class="calculator-box">
+
+            <label for="startRank">Текущий ранг</label>
+
+            <select id="startRank">
+                <option value="0">Без ранга</option>
+                <option value="1">Серебро</option>
+                <option value="2">Золото</option>
+                <option value="3">Рейнджер</option>
+                <option value="4">Мастер</option>
+                <option value="5">Элита</option>
+                <option value="6">Легенда</option>
+            </select>
+
+            <label for="endRank">Желаемый ранг</label>
+
+            <select id="endRank">
+                <option value="1">Серебро</option>
+                <option value="2">Золото</option>
+                <option value="3">Рейнджер</option>
+                <option value="4">Мастер</option>
+                <option value="5">Элита</option>
+                <option value="6">Легенда</option>
+            </select>
+
+            <div class="price-result">
+                <p>Стоимость буста:</p>
+                <h3 id="boostPrice">50 GOLD</h3>
+            </div>
+
+            <p id="boostMessage"></p>
+
+        </div>
+    </section>
+
     <footer>
         <h3>BULKA BOOST</h3>
         <p>© 2026 · Gaming Rank Service</p>
+        <p>С Новым годом! 🎄</p>
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
