@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,19 +10,17 @@
 
 <style>
 body {
-    background:
-        radial-gradient(ellipse at 50% 0%, #263d78 0%, transparent 55%),
-        #101426;
+    background: radial-gradient(ellipse at 50% 0%, #263d78 0%, transparent 55%), #101426;
 }
 
-.logo span, .season, .hero h1 span,
-.feature h3, footer h3 {
+.logo span, .season, .feature h3, footer h3 {
     color: #80aaff;
 }
 
 .navigation a:hover { color: #80aaff; }
 
 .hero h1 span {
+    color: #80aaff;
     text-shadow: 0 0 35px #548dff55;
 }
 
@@ -72,6 +69,7 @@ body {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    transition: .25s;
 }
 
 .select-button:hover,
@@ -116,6 +114,7 @@ body {
     font-size: 15px;
     text-align: left;
     cursor: pointer;
+    transition: .2s;
 }
 
 .rank-option:hover,
@@ -183,13 +182,11 @@ body {
         <h3>+75 UAH</h3>
         <p>За каждый следующий дивизион.</p>
     </div>
-
     <div class="feature">
         <span>⚡</span>
         <h3>Быстрый расчёт</h3>
         <p>Стоимость рассчитывается автоматически.</p>
     </div>
-
     <div class="feature">
         <span>💎</span>
         <h3>Путь к Unreal</h3>
@@ -210,7 +207,27 @@ body {
                 <span class="selected-text">Без ранга</span>
                 <span class="arrow">⌄</span>
             </button>
-            <div class="select-options" id="startOptions"></div>
+            <div class="select-options">
+                <button type="button" class="rank-option selected" data-value="0">Без ранга</button>
+                <button type="button" class="rank-option" data-value="1">Bronze I</button>
+                <button type="button" class="rank-option" data-value="2">Bronze II</button>
+                <button type="button" class="rank-option" data-value="3">Bronze III</button>
+                <button type="button" class="rank-option" data-value="4">Silver I</button>
+                <button type="button" class="rank-option" data-value="5">Silver II</button>
+                <button type="button" class="rank-option" data-value="6">Silver III</button>
+                <button type="button" class="rank-option" data-value="7">Gold I</button>
+                <button type="button" class="rank-option" data-value="8">Gold II</button>
+                <button type="button" class="rank-option" data-value="9">Gold III</button>
+                <button type="button" class="rank-option" data-value="10">Platinum I</button>
+                <button type="button" class="rank-option" data-value="11">Platinum II</button>
+                <button type="button" class="rank-option" data-value="12">Platinum III</button>
+                <button type="button" class="rank-option" data-value="13">Diamond I</button>
+                <button type="button" class="rank-option" data-value="14">Diamond II</button>
+                <button type="button" class="rank-option" data-value="15">Diamond III</button>
+                <button type="button" class="rank-option" data-value="16">Elite</button>
+                <button type="button" class="rank-option" data-value="17">Champion</button>
+                <button type="button" class="rank-option" data-value="18">Unreal</button>
+            </div>
         </div>
 
         <label class="rank-label">ЖЕЛАЕМЫЙ РАНГ</label>
@@ -220,7 +237,26 @@ body {
                 <span class="selected-text">Bronze I</span>
                 <span class="arrow">⌄</span>
             </button>
-            <div class="select-options" id="endOptions"></div>
+            <div class="select-options">
+                <button type="button" class="rank-option selected" data-value="1">Bronze I</button>
+                <button type="button" class="rank-option" data-value="2">Bronze II</button>
+                <button type="button" class="rank-option" data-value="3">Bronze III</button>
+                <button type="button" class="rank-option" data-value="4">Silver I</button>
+                <button type="button" class="rank-option" data-value="5">Silver II</button>
+                <button type="button" class="rank-option" data-value="6">Silver III</button>
+                <button type="button" class="rank-option" data-value="7">Gold I</button>
+                <button type="button" class="rank-option" data-value="8">Gold II</button>
+                <button type="button" class="rank-option" data-value="9">Gold III</button>
+                <button type="button" class="rank-option" data-value="10">Platinum I</button>
+                <button type="button" class="rank-option" data-value="11">Platinum II</button>
+                <button type="button" class="rank-option" data-value="12">Platinum III</button>
+                <button type="button" class="rank-option" data-value="13">Diamond I</button>
+                <button type="button" class="rank-option" data-value="14">Diamond II</button>
+                <button type="button" class="rank-option" data-value="15">Diamond III</button>
+                <button type="button" class="rank-option" data-value="16">Elite</button>
+                <button type="button" class="rank-option" data-value="17">Champion</button>
+                <button type="button" class="rank-option" data-value="18">Unreal</button>
+            </div>
         </div>
 
         <div class="price-result">
@@ -229,6 +265,7 @@ body {
         </div>
 
         <p id="boostMessage">Стоимость рассчитана автоматически.</p>
+
     </div>
 </section>
 
@@ -240,94 +277,59 @@ body {
 
 <script>
 (function () {
-    const names = [
-        "Без ранга",
-        "Bronze I", "Bronze II", "Bronze III",
-        "Silver I", "Silver II", "Silver III",
-        "Gold I", "Gold II", "Gold III",
-        "Platinum I", "Platinum II", "Platinum III",
-        "Diamond I", "Diamond II", "Diamond III",
-        "Elite", "Champion", "Unreal"
-    ];
+    const ranks = { start: 0, end: 1 };
 
-    const state = { start: 0, end: 1 };
+    const price = document.getElementById("boostPrice");
+    const message = document.getElementById("boostMessage");
 
-    const priceElement = document.getElementById("boostPrice");
-    const messageElement = document.getElementById("boostMessage");
-
-    function calculate() {
-        const difference = state.end - state.start;
+    function calculateBoost() {
+        const difference = ranks.end - ranks.start;
 
         if (difference <= 0) {
-            priceElement.textContent = "0 UAH";
-            messageElement.textContent = "Выбери ранг выше текущего.";
+            price.textContent = "0 UAH";
+            message.textContent = "Выбери ранг выше текущего.";
             return;
         }
 
-        const price = difference * 75;
-
-        priceElement.textContent = price + " UAH";
-        messageElement.textContent =
-            "Дивизионов: " + difference + " × 75 UAH";
+        price.textContent = (difference * 75) + " UAH";
+        message.textContent =
+            "Количество дивизионов: " + difference +
+            " × 75 UAH";
     }
 
-    function renderOptions(containerId, key) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = "";
-
-        names.forEach((name, index) => {
-            const option = document.createElement("button");
-
-            option.type = "button";
-            option.className = "rank-option";
-            option.textContent = name;
-            option.dataset.value = index;
-
-            if (state[key] === index) {
-                option.classList.add("selected");
-            }
-
-            option.addEventListener("click", function () {
-                state[key] = index;
-
-                document.querySelector(
-                    "#" + (key === "start" ? "startSelect" : "endSelect")
-                    + " .selected-text"
-                ).textContent = name;
-
-                renderOptions(containerId, key);
-
-                document.getElementById(
-                    key === "start" ? "startSelect" : "endSelect"
-                ).classList.remove("open");
-
-                calculate();
-            });
-
-            container.appendChild(option);
-        });
-    }
-
-    function setup(id) {
+    function setupSelect(id, key) {
         const select = document.getElementById(id);
-        const button = select.querySelector(".select-button");
+        const trigger = select.querySelector(".select-button");
+        const text = select.querySelector(".selected-text");
+        const options = select.querySelectorAll(".rank-option");
 
-        button.addEventListener("click", function () {
-            const opening = !select.classList.contains("open");
-
+        trigger.addEventListener("click", function () {
             document.querySelectorAll(".custom-select").forEach(item => {
-                item.classList.remove("open");
+                if (item !== select) item.classList.remove("open");
             });
 
-            if (opening) select.classList.add("open");
+            select.classList.toggle("open");
+        });
+
+        options.forEach(option => {
+            option.addEventListener("click", function () {
+                ranks[key] = Number(this.dataset.value);
+                text.textContent = this.textContent;
+
+                options.forEach(item =>
+                    item.classList.remove("selected")
+                );
+
+                this.classList.add("selected");
+                select.classList.remove("open");
+
+                calculateBoost();
+            });
         });
     }
 
-    renderOptions("startOptions", "start");
-    renderOptions("endOptions", "end");
-
-    setup("startSelect");
-    setup("endSelect");
+    setupSelect("startSelect", "start");
+    setupSelect("endSelect", "end");
 
     document.addEventListener("click", function (event) {
         if (!event.target.closest(".custom-select")) {
@@ -337,7 +339,7 @@ body {
         }
     });
 
-    calculate();
+    calculateBoost();
 })();
 </script>
 
