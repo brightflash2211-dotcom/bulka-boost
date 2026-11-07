@@ -1,114 +1,150 @@
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#101014">
-    <title>BULKA BOOST — Standoff 2</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BULKA BOOST — Standoff 2</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.calculator {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    padding: 30px 20px;
+    text-align: center;
+}
+.calculator h2 { margin-bottom: 30px; }
+.calculator h2 span { color: var(--gold); }
 
-    <style>
-        .calculator {
-            max-width: 750px;
-            margin: 0 auto 80px;
-            padding: 30px 20px;
-            text-align: center;
-        }
+.calculator-box {
+    background: linear-gradient(145deg,#211c2d,#14121c);
+    border: 1px solid #a987d955;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: left;
+    box-shadow: 0 15px 45px #0005;
+}
 
-        .calculator h2 {
-            font-size: clamp(25px, 5vw, 38px);
-            margin-bottom: 35px;
-        }
+.rank-label {
+    display: block;
+    color: #bdb5ca;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 8px 0 12px;
+}
 
-        .calculator h2 span {
-            color: var(--gold);
-        }
+.custom-select {
+    position: relative;
+    margin-bottom: 25px;
+}
 
-        .calculator-box {
-            background: linear-gradient(145deg, #211c2d, #14121c);
-            border: 1px solid #b69aeb40;
-            border-radius: 22px;
-            padding: 30px;
-            text-align: left;
-            box-shadow: 0 15px 50px #00000040;
-        }
+.select-button {
+    width: 100%;
+    padding: 17px 19px;
+    background: linear-gradient(120deg,#30283f,#211c2e);
+    border: 1px solid #8065a9;
+    border-radius: 13px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: .25s;
+}
 
-        .rank-label {
-            display: block;
-            color: #bdb5ca;
-            font-size: 12px;
-            letter-spacing: 2px;
-            margin: 10px 0 12px;
-        }
+.select-button:hover,
+.custom-select.open .select-button {
+    border-color: #d6b66d;
+    box-shadow: 0 0 20px #a77bff30;
+}
 
-        .rank-select {
-            width: 100%;
-            padding: 17px;
-            border-radius: 13px;
-            border: 1px solid #8d70bd65;
-            background: #292336;
-            color: #f5f2ff;
-            font-size: 16px;
-            font-weight: bold;
-            outline: none;
-            cursor: pointer;
-            transition: .25s;
-            margin-bottom: 22px;
-            color-scheme: dark;
-        }
+.arrow {
+    color: #d6b66d;
+    transition: transform .25s;
+}
 
-        .rank-select:hover,
-        .rank-select:focus {
-            border-color: #c4a2ff;
-            box-shadow: 0 0 18px #a77bff25;
-        }
+.custom-select.open .arrow {
+    transform: rotate(180deg);
+}
 
-        .rank-select option {
-            background: #211c2d;
-            color: white;
-            padding: 12px;
-        }
+.select-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    padding: 7px;
+    background: #211c2d;
+    border: 1px solid #8065a9;
+    border-radius: 14px;
+    z-index: 50;
+    box-shadow: 0 15px 35px #0009;
+}
 
-        .price-result {
-            margin-top: 12px;
-            padding: 25px;
-            border-radius: 16px;
-            text-align: center;
-            background: linear-gradient(120deg, #3a2b50, #252039);
-            border: 1px solid #d6b66d50;
-        }
+.custom-select.open .select-options {
+    display: block;
+    animation: menuIn .2s ease;
+}
 
-        .price-result p {
-            color: #c7bfd2;
-            margin-bottom: 10px;
-        }
+.rank-option {
+    width: 100%;
+    padding: 13px 14px;
+    margin: 2px 0;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #eee8fa;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: .2s;
+}
 
-        .price-result h3 {
-            color: var(--gold);
-            font-size: 35px;
-            text-shadow: 0 0 20px #d6b66d35;
-        }
+.rank-option:hover {
+    background: #423454;
+    color: #e5c879;
+}
 
-        #boostMessage {
-            color: #aaa2b7;
-            text-align: center;
-            margin-top: 17px;
-            font-size: 13px;
-        }
+.rank-option.selected {
+    background: #4b3b60;
+    color: #e5c879;
+}
 
-        @media (max-width: 500px) {
-            .calculator-box {
-                padding: 20px;
-            }
+.price-result {
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    background: linear-gradient(120deg,#3a2b50,#252039);
+    border: 1px solid #d6b66d65;
+}
 
-            .price-result h3 {
-                font-size: 28px;
-            }
-        }
-    </style>
+.price-result p { color: #c7bfd2; margin-bottom: 10px; }
+.price-result h3 {
+    color: var(--gold);
+    font-size: 35px;
+}
+#boostMessage {
+    color: #aaa2b7;
+    text-align: center;
+    margin-top: 17px;
+    font-size: 13px;
+}
+
+@keyframes menuIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:500px) {
+    .calculator-box { padding: 20px; }
+    .price-result h3 { font-size: 28px; }
+}
+</style>
 </head>
-
 <body>
 
 <div id="snow"></div>
@@ -130,21 +166,9 @@
 </main>
 
 <section class="features">
-    <div class="feature">
-        <span>🏆</span>
-        <h3>+100 голды</h3>
-        <p>За каждый следующий ранг.</p>
-    </div>
-    <div class="feature">
-        <span>⚡</span>
-        <h3>Быстрый расчёт</h3>
-        <p>Автоматический калькулятор.</p>
-    </div>
-    <div class="feature">
-        <span>❄️</span>
-        <h3>Winter Boost</h3>
-        <p>Зимняя коллекция BULKA BOOST.</p>
-    </div>
+    <div class="feature"><span>🏆</span><h3>+100 голды</h3><p>За каждый следующий ранг.</p></div>
+    <div class="feature"><span>⚡</span><h3>Быстрый расчёт</h3><p>Автоматический калькулятор.</p></div>
+    <div class="feature"><span>❄️</span><h3>Winter Boost</h3><p>Зимняя коллекция BULKA BOOST.</p></div>
 </section>
 
 <section class="calculator">
@@ -153,38 +177,43 @@
 
     <div class="calculator-box">
 
-        <label class="rank-label" for="startRank">
-            ТВОЙ ТЕКУЩИЙ РАНГ
-        </label>
+        <label class="rank-label">ТВОЙ ТЕКУЩИЙ РАНГ</label>
+        <div class="custom-select" id="startSelect">
+            <button class="select-button" type="button">
+                <span class="selected-text">⚪ Без ранга</span>
+                <span class="arrow">⌄</span>
+            </button>
+            <div class="select-options">
+                <button class="rank-option selected" data-value="0">⚪ Без ранга</button>
+                <button class="rank-option" data-value="1">🥈 Серебро</button>
+                <button class="rank-option" data-value="2">🥇 Золото</button>
+                <button class="rank-option" data-value="3">🟢 Рейнджер</button>
+                <button class="rank-option" data-value="4">🔵 Мастер</button>
+                <button class="rank-option" data-value="5">🟣 Элита</button>
+                <button class="rank-option" data-value="6">💎 Легенда</button>
+            </div>
+        </div>
 
-        <select class="rank-select" id="startRank">
-            <option value="0">⚪ Без ранга</option>
-            <option value="1">🥈 Серебро</option>
-            <option value="2">🥇 Золото</option>
-            <option value="3">🟢 Рейнджер</option>
-            <option value="4">🔵 Мастер</option>
-            <option value="5">🟣 Элита</option>
-            <option value="6">💎 Легенда</option>
-        </select>
-
-        <label class="rank-label" for="endRank">
-            ЖЕЛАЕМЫЙ РАНГ
-        </label>
-
-        <select class="rank-select" id="endRank">
-            <option value="1">🥈 Серебро</option>
-            <option value="2">🥇 Золото</option>
-            <option value="3">🟢 Рейнджер</option>
-            <option value="4">🔵 Мастер</option>
-            <option value="5">🟣 Элита</option>
-            <option value="6">💎 Легенда</option>
-        </select>
+        <label class="rank-label">ЖЕЛАЕМЫЙ РАНГ</label>
+        <div class="custom-select" id="endSelect">
+            <button class="select-button" type="button">
+                <span class="selected-text">🥈 Серебро</span>
+                <span class="arrow">⌄</span>
+            </button>
+            <div class="select-options">
+                <button class="rank-option selected" data-value="1">🥈 Серебро</button>
+                <button class="rank-option" data-value="2">🥇 Золото</button>
+                <button class="rank-option" data-value="3">🟢 Рейнджер</button>
+                <button class="rank-option" data-value="4">🔵 Мастер</button>
+                <button class="rank-option" data-value="5">🟣 Элита</button>
+                <button class="rank-option" data-value="6">💎 Легенда</button>
+            </div>
+        </div>
 
         <div class="price-result">
             <p>СТОИМОСТЬ БУСТА</p>
             <h3 id="boostPrice">100 GOLD</h3>
         </div>
-
         <p id="boostMessage"></p>
     </div>
 </section>
@@ -196,31 +225,66 @@
 </footer>
 
 <script>
-const startRank = document.getElementById("startRank");
-const endRank = document.getElementById("endRank");
-const boostPrice = document.getElementById("boostPrice");
-const boostMessage = document.getElementById("boostMessage");
+const ranks = {
+    start: 0,
+    end: 1
+};
 
 function calculateBoost() {
-    const start = Number(startRank.value);
-    const end = Number(endRank.value);
+    const price = document.getElementById("boostPrice");
+    const message = document.getElementById("boostMessage");
 
-    if (end <= start) {
-        boostPrice.textContent = "0 GOLD";
-        boostMessage.textContent = "Выбери ранг выше текущего.";
+    if (ranks.end <= ranks.start) {
+        price.textContent = "0 GOLD";
+        message.textContent = "Выбери ранг выше текущего.";
         return;
     }
 
-    boostPrice.textContent = ((end - start) * 100) + " GOLD";
-    boostMessage.textContent = "Стоимость рассчитана автоматически.";
+    price.textContent = ((ranks.end - ranks.start) * 100) + " GOLD";
+    message.textContent = "Стоимость рассчитана автоматически.";
 }
 
-startRank.addEventListener("change", calculateBoost);
-endRank.addEventListener("change", calculateBoost);
+function setupSelect(id, key) {
+    const select = document.getElementById(id);
+    const trigger = select.querySelector(".select-button");
+    const text = select.querySelector(".selected-text");
+    const options = select.querySelectorAll(".rank-option");
+
+    trigger.addEventListener("click", () => {
+        document.querySelectorAll(".custom-select").forEach(item => {
+            if (item !== select) item.classList.remove("open");
+        });
+        select.classList.toggle("open");
+    });
+
+    options.forEach(option => {
+        option.addEventListener("click", () => {
+            ranks[key] = Number(option.dataset.value);
+            text.textContent = option.textContent;
+
+            options.forEach(item => item.classList.remove("selected"));
+            option.classList.add("selected");
+
+            select.classList.remove("open");
+            calculateBoost();
+        });
+    });
+}
+
+setupSelect("startSelect", "start");
+setupSelect("endSelect", "end");
+
+document.addEventListener("click", event => {
+    if (!event.target.closest(".custom-select")) {
+        document.querySelectorAll(".custom-select").forEach(item => {
+            item.classList.remove("open");
+        });
+    }
+});
+
 calculateBoost();
 </script>
 
 <script src="script.js?v=777"></script>
-
 </body>
 </html>
