@@ -1,4 +1,6 @@
 
+// SNOW ANIMATION
+
 const snow = document.getElementById("snow");
 
 const snowSymbols = ["❄", "❅", "❆", "·"];
@@ -9,7 +11,6 @@ function createSnowflake() {
     const flake = document.createElement("span");
 
     flake.classList.add("snowflake");
-
     flake.textContent =
         snowSymbols[Math.floor(Math.random() * snowSymbols.length)];
 
@@ -28,10 +29,47 @@ function createSnowflake() {
     }, duration * 1000);
 }
 
-// Создаём снежинки постоянно
-setInterval(createSnowflake, 180);
+if (snow) {
+    setInterval(createSnowflake, 180);
 
-// Начальный снег
-for (let i = 0; i < 25; i++) {
-    setTimeout(createSnowflake, i * 100);
+    for (let i = 0; i < 25; i++) {
+        setTimeout(createSnowflake, i * 100);
+    }
+}
+
+
+// STANDOFF 2 CALCULATOR
+
+const startRank = document.getElementById("startRank");
+const endRank = document.getElementById("endRank");
+const boostPrice = document.getElementById("boostPrice");
+const boostMessage = document.getElementById("boostMessage");
+
+function calculateBoost() {
+    if (!startRank || !endRank || !boostPrice || !boostMessage) {
+        return;
+    }
+
+    const start = Number(startRank.value);
+    const end = Number(endRank.value);
+
+    if (end <= start) {
+        boostPrice.textContent = "0 GOLD";
+        boostMessage.textContent =
+            "Выбери ранг выше текущего.";
+        return;
+    }
+
+    const price = (end - start) * 50;
+
+    boostPrice.textContent = price + " GOLD";
+    boostMessage.textContent =
+        "Стоимость рассчитана автоматически.";
+}
+
+if (startRank && endRank) {
+    startRank.addEventListener("change", calculateBoost);
+    endRank.addEventListener("change", calculateBoost);
+
+    calculateBoost();
 }
