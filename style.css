@@ -1,0 +1,282 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #101014;
+    --gold: #d6b66d;
+    --white: #f5f2eb;
+    --muted: #a5a3aa;
+    --purple: #9c7bdf;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 50% 0%, #292334 0%, transparent 55%),
+        var(--bg);
+    color: var(--white);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* HEADER */
+
+.header {
+    width: 100%;
+    min-height: 85px;
+    padding: 20px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ffffff12;
+    background: #101014cc;
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.navigation {
+    display: flex;
+    gap: 30px;
+}
+
+.navigation a {
+    color: #c9c6ce;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: var(--gold);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+}
+
+.season {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    animation: appear 1s ease;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 9vw, 100px);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -3px;
+    animation: appear 1.2s ease;
+}
+
+.hero h1 span {
+    color: var(--gold);
+    text-shadow: 0 0 35px #d6b66d35;
+}
+
+.hero p {
+    color: var(--muted);
+    margin-top: 25px;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    margin-top: 40px;
+}
+
+.button {
+    padding: 17px 35px;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px #00000050;
+}
+
+.gold {
+    background: var(--gold);
+    color: #17130c;
+}
+
+.purple {
+    background: var(--purple);
+    color: #fff;
+}
+
+.snow-decoration {
+    position: absolute;
+    bottom: 35px;
+    color: #ffffff30;
+    font-size: 65px;
+    animation: rotate 12s linear infinite;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 50px 7%;
+}
+
+.feature {
+    padding: 35px 25px;
+    background: #ffffff06;
+    border: 1px solid #ffffff12;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-7px);
+    border-color: #d6b66d70;
+    background: #ffffff0b;
+}
+
+.feature span {
+    font-size: 35px;
+}
+
+.feature h3 {
+    margin: 17px 0 10px;
+    color: var(--gold);
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 1px solid #ffffff12;
+    text-align: center;
+    color: var(--muted);
+    line-height: 2;
+}
+
+footer h3 {
+    color: var(--gold);
+    letter-spacing: 3px;
+}
+
+/* SNOW */
+
+#snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.snowflake {
+    position: absolute;
+    top: -20px;
+    color: white;
+    opacity: 0.7;
+    user-select: none;
+    animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .navigation {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .navigation a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 550px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
