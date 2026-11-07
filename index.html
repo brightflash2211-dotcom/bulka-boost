@@ -7,6 +7,89 @@
     <meta name="theme-color" content="#101014">
     <title>BULKA BOOST — Rank Service</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .order-section {
+            max-width: 1100px;
+            margin: 65px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .order-title {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .order-title span {
+            color: #b58aff;
+        }
+
+        .order-subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .order-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 25px 18px;
+        }
+
+        .order-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #b58aff;
+        }
+
+        .order-card h3 {
+            margin: 12px 0;
+        }
+
+        .order-card p {
+            color: #aaa;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .order-telegram {
+            margin-top: 30px;
+        }
+
+        .order-telegram p {
+            color: #aaa;
+            margin-bottom: 18px;
+        }
+
+        .order-telegram a {
+            display: inline-block;
+            padding: 15px 28px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7650d9, #a77aff);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .order-note {
+            max-width: 700px;
+            margin: 25px auto 0;
+            padding: 16px;
+            background: rgba(181,138,255,0.07);
+            border: 1px solid rgba(181,138,255,0.2);
+            border-radius: 14px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
@@ -71,9 +154,83 @@
         </div>
     </section>
 
+    <!-- HOW TO ORDER -->
+
+    <section class="order-section">
+
+        <h2 class="order-title">
+            КАК <span>ОФОРМИТЬ ЗАКАЗ?</span>
+        </h2>
+
+        <p class="order-subtitle">
+            Заказать буст очень просто. Следуй четырём шагам!
+        </p>
+
+        <div class="order-grid">
+
+            <div class="order-card">
+                <div class="order-number">01</div>
+                <h3>Выбери игру и ранг</h3>
+                <p>
+                    Перейди в Fortnite или Standoff 2.
+                    Выбери свой текущий и желаемый ранг.
+                </p>
+            </div>
+
+            <div class="order-card">
+                <div class="order-number">02</div>
+                <h3>Сделай скриншот</h3>
+                <p>
+                    Сделай скриншот калькулятора,
+                    чтобы были видны выбранные ранги
+                    и итоговая стоимость.
+                </p>
+            </div>
+
+            <div class="order-card">
+                <div class="order-number">03</div>
+                <h3>Напиши в Telegram</h3>
+                <p>
+                    Отправь скриншот и свой игровой ник
+                    в личные сообщения BULKA BOOST.
+                </p>
+            </div>
+
+            <div class="order-card">
+                <div class="order-number">04</div>
+                <h3>Подтверди заказ</h3>
+                <p>
+                    Дождись ответа, согласуй сроки
+                    и условия оплаты. После этого
+                    заказ можно запускать в работу.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="order-telegram">
+            <p>Остались вопросы или хочешь оформить заказ?</p>
+
+            <a href="https://t.me/byylka_031"
+               target="_blank"
+               rel="noopener noreferrer">
+                ✈ НАПИСАТЬ В TELEGRAM
+            </a>
+        </div>
+
+        <div class="order-note">
+            🔒 <strong>Безопасность:</strong>
+            для оформления заявки достаточно игрового ника
+            и скриншота калькулятора. Не отправляй пароли
+            и коды подтверждения от своего аккаунта.
+        </div>
+
+    </section>
+
     <!-- PAYMENT SECTION -->
 
     <section class="features">
+
         <div class="feature">
             <span>💳</span>
             <h3>Условия оплаты</h3>
@@ -109,6 +266,7 @@
                 и порядок оплаты.
             </p>
         </div>
+
     </section>
 
     <footer>
@@ -118,5 +276,6 @@
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
