@@ -4,210 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BULKA BOOST</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #101018;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        header {
-            padding: 25px;
-            background: #191923;
-            border-bottom: 1px solid #d6ae5c;
-        }
-
-        header h1 {
-            color: #e8bd63;
-            letter-spacing: 3px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 15px;
-        }
-
-        button {
-            padding: 13px 20px;
-            border: 1px solid #d6ae5c;
-            border-radius: 10px;
-            background: #20202c;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #d6ae5c;
-            color: black;
-        }
-
-        main {
-            padding: 45px 15px;
-        }
-
-        h2 {
-            color: #e8bd63;
-            font-size: 32px;
-        }
-
-        .card {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 25px;
-            background: #1b1b27;
-            border: 1px solid #383849;
-            border-radius: 18px;
-        }
-
-        .price {
-            color: #e8bd63;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .snow {
-            position: fixed;
-            top: -20px;
-            color: white;
-            pointer-events: none;
-            z-index: 100;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) translateX(35px);
-            }
-        }
-
-        footer {
-            padding: 25px;
-            color: #aaa;
-            border-top: 1px solid #383849;
-        }
-    </style>
+    <meta name="theme-color" content="#101014">
+    <title>BULKA BOOST — Rank Service</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>BULKA BOOST</h1>
-    <p>PREMIUM GAMING SERVICE ❄️</p>
-</header>
+    <div id="snow"></div>
 
-<nav>
-    <button onclick="showPage('home')">Главная</button>
-    <button onclick="showPage('standoff')">Standoff 2</button>
-    <button onclick="showPage('fortnite')">Fortnite</button>
-    <button onclick="showPage('social')">Соцсети</button>
-</nav>
+    <header class="header">
+        <a class="logo" href="index.html">
+            BULKA <span>BOOST</span>
+        </a>
 
-<main>
-    <section id="home">
-        <h2>ПОДНИМИ СВОЙ РАНГ</h2>
-        <p>Добро пожаловать в BULKA BOOST!</p>
-        <p>Твой игровой прогресс начинается здесь.</p>
+        <nav class="navigation">
+            <a href="index.html">Главная</a>
+            <a href="standoff.html">Standoff 2</a>
+            <a href="fortnite.html">Fortnite</a>
+            <a href="social.html">Соцсети</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <div class="season">✦ WINTER EDITION 2026 ✦</div>
+
+        <h1>
+            ПОДНИМИ СВОЙ<br>
+            <span>РАНГ</span>
+        </h1>
+
+        <p>
+            Твой прогресс. Твои правила.
+            Твой путь к высшему рангу.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="standoff.html" class="button gold">
+                STANDOFF 2
+            </a>
+
+            <a href="fortnite.html" class="button purple">
+                FORTNITE
+            </a>
+        </div>
+
+        <div class="snow-decoration">❄</div>
+    </main>
+
+    <section class="features">
+        <div class="feature">
+            <span>🏆</span>
+            <h3>Выбор ранга</h3>
+            <p>Выбирай желаемый результат.</p>
+        </div>
+
+        <div class="feature">
+            <span>⚡</span>
+            <h3>Удобный заказ</h3>
+            <p>Быстрое оформление заявки.</p>
+        </div>
+
+        <div class="feature">
+            <span>🎮</span>
+            <h3>Две игры</h3>
+            <p>Standoff 2 и Fortnite.</p>
+        </div>
     </section>
 
-    <section id="standoff" hidden>
-        <h2>STANDOFF 2</h2>
-        <p>Выбери желаемый ранг</p>
-        <div id="stRanks"></div>
-        <p class="price" id="stPrice">50 G</p>
-    </section>
+    <footer>
+        <h3>BULKA BOOST</h3>
+        <p>© 2026 · Gaming Rank Service</p>
+        <p>С Новым годом! 🎄</p>
+    </footer>
 
-    <section id="fortnite" hidden>
-        <h2>FORTNITE</h2>
-        <p>Выбери желаемый ранг</p>
-        <div id="foRanks"></div>
-        <p class="price" id="foPrice">75 ₴</p>
-    </section>
-
-    <section id="social" hidden>
-        <h2>МОИ СОЦСЕТИ</h2>
-        <p>Telegram: <a href="https://t.me/bulka_tgc">bulka_tgc</a></p>
-        <p>TikTok: скоро</p>
-        <p>YouTube: скоро</p>
-    </section>
-</main>
-
-<footer>
-    © 2026 BULKA BOOST
-    <p>С Новым годом! 🎄</p>
-</footer>
-
-<script>
-    const st = [
-        "Bronze I", "Bronze II", "Bronze III",
-        "Silver I", "Silver II", "Silver III",
-        "Gold I", "Gold II", "Gold III",
-        "Gold IV", "Platinum I", "Platinum II",
-        "Platinum III", "Platinum IV",
-        "Diamond I", "Diamond II", "Diamond III",
-        "Diamond IV", "Phoenix", "Ranger",
-        "Champion", "Legend"
-    ];
-
-    const fo = [
-        "Bronze I", "Bronze II", "Bronze III",
-        "Silver I", "Silver II", "Silver III",
-        "Gold I", "Gold II", "Gold III",
-        "Platinum I", "Platinum II", "Platinum III",
-        "Diamond I", "Diamond II", "Diamond III",
-        "Elite", "Champion", "Unreal"
-    ];
-
-    function createRanks(names, id, priceId, price) {
-        const container = document.getElementById(id);
-
-        names.forEach((name, index) => {
-            const button = document.createElement("button");
-            button.style.margin = "5px";
-            button.textContent = name;
-
-            button.onclick = () => {
-                document.getElementById(priceId).textContent =
-                    (index + 1) * price +
-                    (price === 50 ? " G" : " ₴");
-            };
-
-            container.appendChild(button);
-        });
-    }
-
-    createRanks(st, "stRanks", "stPrice", 50);
-    createRanks(fo, "foRanks", "foPrice", 75);
-
-    function showPage(page) {
-        ["home", "standoff", "fortnite", "social"]
-            .forEach(id => {
-                document.getElementById(id).hidden = id !== page;
-            });
-    }
-
-    for (let i = 0; i < 45; i++) {
-        const snow = document.createElement("div");
-        snow.className = "snow";
-        snow.textContent = "❄";
-
-        snow.style.left = Math.random() * 100 + "vw";
-        snow.style.fontSize = (10 + Math.random() * 15) + "px";
-        snow.style.animationDuration = (5 + Math.random() * 10) + "s";
-        snow.style.animationDelay = Math.random() * 10 + "s";
-
-        document.body.appendChild(snow);
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
