@@ -259,106 +259,130 @@ footer h3 { color: #80aaff; }
     <p>С Новым годом! 🎄</p>
 </footer>
 
+
 <script>
-const rankNames = [
-    "Без ранга",
-    "Bronze I", "Bronze II", "Bronze III",
-    "Silver I", "Silver II", "Silver III",
-    "Gold I", "Gold II", "Gold III",
-    "Platinum I", "Platinum II", "Platinum III",
-    "Diamond I", "Diamond II", "Diamond III",
-    "Elite", "Champion", "Unreal"
-];
+(() => {
+    const rankNames = [
+        "Без ранга",
+        "Bronze I", "Bronze II", "Bronze III",
+        "Silver I", "Silver II", "Silver III",
+        "Gold I", "Gold II", "Gold III",
+        "Platinum I", "Platinum II", "Platinum III",
+        "Diamond I", "Diamond II", "Diamond III",
+        "Elite", "Champion", "Unreal"
+    ];
 
-const ranks = {
-    start: 0,
-    end: 1
-};
+    const PRICE_PER_DIVISION = 75;
 
-function fillOptions(containerId, firstValue) {
-    const container = document.getElementById(containerId);
+    const ranks = {
+        start: 0,
+        end: 1
+    };
 
-    rankNames.forEach((name, index) => {
-        if (index < firstValue) return;
+    const elements = {
+        price: document.getElementById("boostPrice"),
+        message: document.getElementById("boostMessage")
+    };
 
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "rank-option";
-        button.dataset.value = index;
-        button.textContent = name;
+    function calculateBoost() {
+        const difference = ranks.end - ranks.start;
 
-        if (index === firstValue) {
-            button.classList.add("selected");
+        if (difference <= 0) {
+            elements.price.textContent = "0 UAH";
+            elements.message.textContent =
+                "Выбери желаемый ранг выше текущего.";
+            return;
         }
 
-        container.appendChild(button);
-    });
-}
+        const total = difference * PRICE_PER_DIVISION;
 
-function calculateBoost() {
-    const price = document.getElementById("boostPrice");
-    const message = document.getElementById("boostMessage");
+        elements.price.textContent =
+            total.toLocaleString("ru-RU") + " UAH";
 
-    if (ranks.end <= ranks.start) {
-        price.textContent = "0 UAH";
-        message.textContent = "Выбери ранг выше текущего.";
-        return;
+        elements.message.textContent =
+            `Пройдено дивизионов: ${difference} · 75 UAH за каждый`;
     }
 
-    const total = (ranks.end - ranks.start) * 75;
+    function fillOptions(containerId, minIndex) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
 
-    price.textContent = total.toLocaleString("ru-RU") + " UAH";
-    message.textContent = "Стоимость рассчитана автоматически.";
-}
+        rankNames.forEach((name, index) => {
+            if (index < minIndex) return;
 
-function setupSelect(id, key) {
-    const select = document.getElementById(id);
-    const trigger = select.querySelector(".select-button");
-    const text = select.querySelector(".selected-text");
-    const options = select.querySelector(".select-options");
+            const button = document.createElement("button");
 
-    trigger.addEventListener("click", () => {
-        document.querySelectorAll(".custom-select").forEach(item => {
-            if (item !== select) item.classList.remove("open");
-        });
+            button.type = "button";
+            button.className = "rank-option";
+            button.dataset.value = index;
+            button.textContent = name;
 
-        select.classList.toggle("open");
-    });
+            if (
+                (containerId === "startOptions" && index === ranks.start) ||
+                (containerId === "endOptions" && index === ranks.end)
+            ) {
+                button.classList.add("selected");
+            }
 
-    options.addEventListener("click", event => {
-        const option = event.target.closest(".rank-option");
-        if (!option) return;
-
-        ranks[key] = Number(option.dataset.value);
-        text.textContent = option.textContent;
-
-        options.querySelectorAll(".rank-option").forEach(item => {
-            item.classList.remove("selected");
-        });
-
-        option.classList.add("selected");
-        select.classList.remove("open");
-
-        calculateBoost();
-    });
-}
-
-fillOptions("startOptions", 0);
-fillOptions("endOptions", 1);
-
-setupSelect("startSelect", "start");
-setupSelect("endSelect", "end");
-
-document.addEventListener("click", event => {
-    if (!event.target.closest(".custom-select")) {
-        document.querySelectorAll(".custom-select").forEach(item => {
-            item.classList.remove("open");
+            container.appendChild(button);
         });
     }
-});
 
-calculateBoost();
+    function setupSelect(id, key) {
+        const select = document.getElementById(id);
+        const trigger = select.querySelector(".select-button");
+        const selectedText = select.querySelector(".selected-text");
+        const options = select.querySelector(".select-options");
+
+        trigger.addEventListener("click", () => {
+            const wasOpen = select.classList.contains("open");
+
+            document.querySelectorAll(".custom-select").forEach(item => {
+                item.classList.remove("open");
+            });
+
+            if (!wasOpen) select.classList.add("open");
+        });
+
+        options.addEventListener("click", event => {
+            const option = event.target.closest(".rank-option");
+            if (!option) return;
+
+            ranks[key] = Number(option.dataset.value);
+
+            selectedText.textContent = rankNames[ranks[key]];
+
+            options.querySelectorAll(".rank-option").forEach(item => {
+                item.classList.toggle(
+                    "selected",
+                    Number(item.dataset.value) === ranks[key]
+                );
+            });
+
+            select.classList.remove("open");
+
+            calculateBoost();
+        });
+    }
+
+    fillOptions("startOptions", 0);
+    fillOptions("endOptions", 1);
+
+    setupSelect("startSelect", "start");
+    setupSelect("endSelect", "end");
+
+    document.addEventListener("click", event => {
+        if (!event.target.closest(".custom-select")) {
+            document.querySelectorAll(".custom-select").forEach(item => {
+                item.classList.remove("open");
+            });
+        }
+    });
+
+    calculateBoost();
+})();
 </script>
+
 
 <script src="script.js?v=777"></script>
 
