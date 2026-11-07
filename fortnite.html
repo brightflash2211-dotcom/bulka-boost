@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101426">
+<title>BULKA BOOST — Fortnite</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    background:
+        radial-gradient(ellipse at 50% 0%, #263d78 0%, transparent 55%),
+        #101426;
+}
+
+.logo span { color: #80aaff; }
+
+.navigation a:hover { color: #80aaff; }
+
+.season { color: #80aaff; }
+
+.hero h1 span {
+    color: #80aaff;
+    text-shadow: 0 0 35px #548dff55;
+}
+
+.feature h3 { color: #80aaff; }
+
+.feature:hover { border-color: #80aaff70; }
+
+.calculator {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.calculator h2 { margin-bottom: 30px; }
+.calculator h2 span { color: #80aaff; }
+
+.calculator-box {
+    background: linear-gradient(145deg,#202b49,#151b30);
+    border: 1px solid #7199e955;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: left;
+    box-shadow: 0 15px 45px #0005;
+}
+
+.rank-label {
+    display: block;
+    color: #b9c8e8;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 8px 0 12px;
+}
+
+.custom-select {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.select-button {
+    width: 100%;
+    padding: 17px 19px;
+    background: linear-gradient(120deg,#293b62,#202b49);
+    border: 1px solid #668bd0;
+    border-radius: 13px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.select-button:hover,
+.custom-select.open .select-button {
+    border-color: #a9c9ff;
+    box-shadow: 0 0 20px #548dff35;
+}
+
+.arrow {
+    color: #80aaff;
+    transition: transform .25s;
+}
+
+.custom-select.open .arrow {
+    transform: rotate(180deg);
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 7px;
+    background: #1c2742;
+    border: 1px solid #668bd0;
+    border-radius: 14px;
+    z-index: 50;
+    box-shadow: 0 15px 35px #0009;
+}
+
+.custom-select.open .select-options {
+    display: block;
+    animation: menuIn .2s ease;
+}
+
+.rank-option {
+    width: 100%;
+    padding: 13px 14px;
+    margin: 2px 0;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #e8efff;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.rank-option:hover {
+    background: #354d79;
+    color: #a9c9ff;
+}
+
+.rank-option.selected {
+    background: #354d79;
+    color: #a9c9ff;
+}
+
+.price-result {
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    background: linear-gradient(120deg,#304c83,#222e50);
+    border: 1px solid #80aaff75;
+}
+
+.price-result p {
+    color: #c7d6f5;
+    margin-bottom: 10px;
+}
+
+.price-result h3 {
+    color: #a9c9ff;
+    font-size: 35px;
+}
+
+#boostMessage {
+    color: #aabbdc;
+    text-align: center;
+    margin-top: 17px;
+    font-size: 13px;
+}
+
+footer h3 { color: #80aaff; }
+
+@keyframes menuIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:500px) {
+    .calculator-box { padding: 20px; }
+    .price-result h3 { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="snow"></div>
+
+<header class="header">
+    <a class="logo" href="index.html">BULKA <span>BOOST</span></a>
+    <nav class="navigation">
+        <a href="index.html">Главная</a>
+        <a href="standoff.html">Standoff 2</a>
+        <a href="fortnite.html">Fortnite</a>
+        <a href="social.html">Соцсети</a>
+    </nav>
+</header>
+
+<main class="hero">
+    <div class="season">✦ FORTNITE RANK BOOST ✦</div>
+    <h1>ДОСТИГНИ<br><span>UNREAL</span></h1>
+    <p>Твой путь к высшему рангу начинается здесь.</p>
+</main>
+
+<section class="features">
+    <div class="feature">
+        <span>🏆</span>
+        <h3>+75 UAH</h3>
+        <p>За каждый следующий дивизион.</p>
+    </div>
+
+    <div class="feature">
+        <span>⚡</span>
+        <h3>Быстрый расчёт</h3>
+        <p>Стоимость рассчитывается автоматически.</p>
+    </div>
+
+    <div class="feature">
+        <span>💎</span>
+        <h3>Путь к Unreal</h3>
+        <p>Поднимайся к высшей лиге.</p>
+    </div>
+</section>
+
+<section class="calculator">
+    <div class="season">✦ FORTNITE RANK CALCULATOR ✦</div>
+    <h2>РАССЧИТАЙ СВОЙ <span>БУСТ</span></h2>
+
+    <div class="calculator-box">
+
+        <label class="rank-label">ТВОЙ ТЕКУЩИЙ РАНГ</label>
+
+        <div class="custom-select" id="startSelect">
+            <button class="select-button" type="button">
+                <span class="selected-text">Без ранга</span>
+                <span class="arrow">⌄</span>
+            </button>
+            <div class="select-options" id="startOptions"></div>
+        </div>
+
+        <label class="rank-label">ЖЕЛАЕМЫЙ РАНГ</label>
+
+        <div class="custom-select" id="endSelect">
+            <button class="select-button" type="button">
+                <span class="selected-text">Bronze I</span>
+                <span class="arrow">⌄</span>
+            </button>
+            <div class="select-options" id="endOptions"></div>
+        </div>
+
+        <div class="price-result">
+            <p>СТОИМОСТЬ БУСТА</p>
+            <h3 id="boostPrice">75 UAH</h3>
+        </div>
+
+        <p id="boostMessage"></p>
+    </div>
+</section>
+
+<footer>
+    <h3>BULKA BOOST</h3>
+    <p>© 2026 · Gaming Rank Service</p>
+    <p>С Новым годом! 🎄</p>
+</footer>
+
+<script>
+const rankNames = [
+    "Без ранга",
+    "Bronze I", "Bronze II", "Bronze III",
+    "Silver I", "Silver II", "Silver III",
+    "Gold I", "Gold II", "Gold III",
+    "Platinum I", "Platinum II", "Platinum III",
+    "Diamond I", "Diamond II", "Diamond III",
+    "Elite", "Champion", "Unreal"
+];
+
+const ranks = {
+    start: 0,
+    end: 1
+};
+
+function fillOptions(containerId, firstValue) {
+    const container = document.getElementById(containerId);
+
+    rankNames.forEach((name, index) => {
+        if (index < firstValue) return;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "rank-option";
+        button.dataset.value = index;
+        button.textContent = name;
+
+        if (index === firstValue) {
+            button.classList.add("selected");
+        }
+
+        container.appendChild(button);
+    });
+}
+
+function calculateBoost() {
+    const price = document.getElementById("boostPrice");
+    const message = document.getElementById("boostMessage");
+
+    if (ranks.end <= ranks.start) {
+        price.textContent = "0 UAH";
+        message.textContent = "Выбери ранг выше текущего.";
+        return;
+    }
+
+    const total = (ranks.end - ranks.start) * 75;
+
+    price.textContent = total.toLocaleString("ru-RU") + " UAH";
+    message.textContent = "Стоимость рассчитана автоматически.";
+}
+
+function setupSelect(id, key) {
+    const select = document.getElementById(id);
+    const trigger = select.querySelector(".select-button");
+    const text = select.querySelector(".selected-text");
+    const options = select.querySelector(".select-options");
+
+    trigger.addEventListener("click", () => {
+        document.querySelectorAll(".custom-select").forEach(item => {
+            if (item !== select) item.classList.remove("open");
+        });
+
+        select.classList.toggle("open");
+    });
+
+    options.addEventListener("click", event => {
+        const option = event.target.closest(".rank-option");
+        if (!option) return;
+
+        ranks[key] = Number(option.dataset.value);
+        text.textContent = option.textContent;
+
+        options.querySelectorAll(".rank-option").forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        option.classList.add("selected");
+        select.classList.remove("open");
+
+        calculateBoost();
+    });
+}
+
+fillOptions("startOptions", 0);
+fillOptions("endOptions", 1);
+
+setupSelect("startSelect", "start");
+setupSelect("endSelect", "end");
+
+document.addEventListener("click", event => {
+    if (!event.target.closest(".custom-select")) {
+        document.querySelectorAll(".custom-select").forEach(item => {
+            item.classList.remove("open");
+        });
+    }
+});
+
+calculateBoost();
+</script>
+
+<script src="script.js?v=777"></script>
+
+</body>
+</html>
