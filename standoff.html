@@ -7,7 +7,108 @@
     <meta name="theme-color" content="#101014">
     <title>BULKA BOOST — Standoff 2</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .calculator {
+            max-width: 750px;
+            margin: 0 auto 80px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .calculator h2 {
+            font-size: clamp(25px, 5vw, 38px);
+            margin-bottom: 35px;
+        }
+
+        .calculator h2 span {
+            color: var(--gold);
+        }
+
+        .calculator-box {
+            background: linear-gradient(145deg, #211c2d, #14121c);
+            border: 1px solid #b69aeb40;
+            border-radius: 22px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 15px 50px #00000040;
+        }
+
+        .rank-label {
+            display: block;
+            color: #bdb5ca;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin: 10px 0 12px;
+        }
+
+        .rank-select {
+            width: 100%;
+            padding: 17px;
+            border-radius: 13px;
+            border: 1px solid #8d70bd65;
+            background: #292336;
+            color: #f5f2ff;
+            font-size: 16px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            transition: .25s;
+            margin-bottom: 22px;
+            color-scheme: dark;
+        }
+
+        .rank-select:hover,
+        .rank-select:focus {
+            border-color: #c4a2ff;
+            box-shadow: 0 0 18px #a77bff25;
+        }
+
+        .rank-select option {
+            background: #211c2d;
+            color: white;
+            padding: 12px;
+        }
+
+        .price-result {
+            margin-top: 12px;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            background: linear-gradient(120deg, #3a2b50, #252039);
+            border: 1px solid #d6b66d50;
+        }
+
+        .price-result p {
+            color: #c7bfd2;
+            margin-bottom: 10px;
+        }
+
+        .price-result h3 {
+            color: var(--gold);
+            font-size: 35px;
+            text-shadow: 0 0 20px #d6b66d35;
+        }
+
+        #boostMessage {
+            color: #aaa2b7;
+            text-align: center;
+            margin-top: 17px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 500px) {
+            .calculator-box {
+                padding: 20px;
+            }
+
+            .price-result h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
 <div id="snow"></div>
@@ -51,29 +152,36 @@
     <h2>РАССЧИТАЙ СВОЙ <span>БУСТ</span></h2>
 
     <div class="calculator-box">
-        <label for="startRank">Текущий ранг</label>
-        <select id="startRank">
-            <option value="0">Без ранга</option>
-            <option value="1">Серебро</option>
-            <option value="2">Золото</option>
-            <option value="3">Рейнджер</option>
-            <option value="4">Мастер</option>
-            <option value="5">Элита</option>
-            <option value="6">Легенда</option>
+
+        <label class="rank-label" for="startRank">
+            ТВОЙ ТЕКУЩИЙ РАНГ
+        </label>
+
+        <select class="rank-select" id="startRank">
+            <option value="0">⚪ Без ранга</option>
+            <option value="1">🥈 Серебро</option>
+            <option value="2">🥇 Золото</option>
+            <option value="3">🟢 Рейнджер</option>
+            <option value="4">🔵 Мастер</option>
+            <option value="5">🟣 Элита</option>
+            <option value="6">💎 Легенда</option>
         </select>
 
-        <label for="endRank">Желаемый ранг</label>
-        <select id="endRank">
-            <option value="1">Серебро</option>
-            <option value="2">Золото</option>
-            <option value="3">Рейнджер</option>
-            <option value="4">Мастер</option>
-            <option value="5">Элита</option>
-            <option value="6">Легенда</option>
+        <label class="rank-label" for="endRank">
+            ЖЕЛАЕМЫЙ РАНГ
+        </label>
+
+        <select class="rank-select" id="endRank">
+            <option value="1">🥈 Серебро</option>
+            <option value="2">🥇 Золото</option>
+            <option value="3">🟢 Рейнджер</option>
+            <option value="4">🔵 Мастер</option>
+            <option value="5">🟣 Элита</option>
+            <option value="6">💎 Легенда</option>
         </select>
 
         <div class="price-result">
-            <p>Стоимость буста:</p>
+            <p>СТОИМОСТЬ БУСТА</p>
             <h3 id="boostPrice">100 GOLD</h3>
         </div>
 
@@ -109,7 +217,6 @@ function calculateBoost() {
 
 startRank.addEventListener("change", calculateBoost);
 endRank.addEventListener("change", calculateBoost);
-
 calculateBoost();
 </script>
 
