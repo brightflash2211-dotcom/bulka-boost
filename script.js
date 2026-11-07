@@ -11,6 +11,7 @@ function createSnowflake() {
     const flake = document.createElement("span");
 
     flake.classList.add("snowflake");
+
     flake.textContent =
         snowSymbols[Math.floor(Math.random() * snowSymbols.length)];
 
@@ -55,16 +56,14 @@ function calculateBoost() {
 
     if (end <= start) {
         boostPrice.textContent = "0 GOLD";
-        boostMessage.textContent =
-            "Выбери ранг выше текущего.";
+        boostMessage.textContent = "Выбери ранг выше текущего.";
         return;
     }
 
     const price = (end - start) * 100;
 
     boostPrice.textContent = price + " GOLD";
-    boostMessage.textContent =
-        "Стоимость рассчитана автоматически.";
+    boostMessage.textContent = "Стоимость рассчитана автоматически.";
 }
 
 if (startRank && endRank) {
