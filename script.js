@@ -60,7 +60,7 @@ function calculateBoost() {
         return;
     }
 
-    const price = (end - start) * 50;
+    const price = (end - start) * 100;
 
     boostPrice.textContent = price + " GOLD";
     boostMessage.textContent =
