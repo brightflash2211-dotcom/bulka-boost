@@ -1,12 +1,13 @@
 
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101426">
 <title>BULKA BOOST — Standoff 2</title>
 <link rel="stylesheet" href="style.css">
+
 <style>
 .calculator {
     max-width: 700px;
@@ -14,6 +15,7 @@
     padding: 30px 20px;
     text-align: center;
 }
+
 .calculator h2 { margin-bottom: 30px; }
 .calculator h2 span { color: var(--gold); }
 
@@ -122,11 +124,16 @@
     border: 1px solid #d6b66d65;
 }
 
-.price-result p { color: #c7bfd2; margin-bottom: 10px; }
+.price-result p {
+    color: #c7bfd2;
+    margin-bottom: 10px;
+}
+
 .price-result h3 {
     color: var(--gold);
     font-size: 35px;
 }
+
 #boostMessage {
     color: #aaa2b7;
     text-align: center;
@@ -145,6 +152,7 @@
 }
 </style>
 </head>
+
 <body>
 
 <div id="snow"></div>
@@ -166,9 +174,23 @@
 </main>
 
 <section class="features">
-    <div class="feature"><span>🏆</span><h3>+100 голды</h3><p>За каждый следующий ранг.</p></div>
-    <div class="feature"><span>⚡</span><h3>Быстрый расчёт</h3><p>Автоматический калькулятор.</p></div>
-    <div class="feature"><span>❄️</span><h3>Winter Boost</h3><p>Зимняя коллекция BULKA BOOST.</p></div>
+    <div class="feature">
+        <span>🏆</span>
+        <h3>+100 голды</h3>
+        <p>За каждый следующий ранг.</p>
+    </div>
+
+    <div class="feature">
+        <span>⚡</span>
+        <h3>Быстрый расчёт</h3>
+        <p>Автоматический калькулятор.</p>
+    </div>
+
+    <div class="feature">
+        <span>❄️</span>
+        <h3>Winter Boost</h3>
+        <p>Зимняя коллекция BULKA BOOST.</p>
+    </div>
 </section>
 
 <section class="calculator">
@@ -178,35 +200,39 @@
     <div class="calculator-box">
 
         <label class="rank-label">ТВОЙ ТЕКУЩИЙ РАНГ</label>
+
         <div class="custom-select" id="startSelect">
             <button class="select-button" type="button">
                 <span class="selected-text">⚪ Без ранга</span>
                 <span class="arrow">⌄</span>
             </button>
+
             <div class="select-options">
-                <button class="rank-option selected" data-value="0">⚪ Без ранга</button>
-                <button class="rank-option" data-value="1">🥈 Серебро</button>
-                <button class="rank-option" data-value="2">🥇 Золото</button>
-                <button class="rank-option" data-value="3">🟢 Рейнджер</button>
-                <button class="rank-option" data-value="4">🔵 Мастер</button>
-                <button class="rank-option" data-value="5">🟣 Элита</button>
-                <button class="rank-option" data-value="6">💎 Легенда</button>
+                <button type="button" class="rank-option selected" data-value="0">⚪ Без ранга</button>
+                <button type="button" class="rank-option" data-value="1">🥈 Серебро</button>
+                <button type="button" class="rank-option" data-value="2">🥇 Золото</button>
+                <button type="button" class="rank-option" data-value="3">🟢 Рейнджер</button>
+                <button type="button" class="rank-option" data-value="4">🔵 Мастер</button>
+                <button type="button" class="rank-option" data-value="5">🟣 Элита</button>
+                <button type="button" class="rank-option" data-value="6">💎 Легенда</button>
             </div>
         </div>
 
         <label class="rank-label">ЖЕЛАЕМЫЙ РАНГ</label>
+
         <div class="custom-select" id="endSelect">
             <button class="select-button" type="button">
                 <span class="selected-text">🥈 Серебро</span>
                 <span class="arrow">⌄</span>
             </button>
+
             <div class="select-options">
-                <button class="rank-option selected" data-value="1">🥈 Серебро</button>
-                <button class="rank-option" data-value="2">🥇 Золото</button>
-                <button class="rank-option" data-value="3">🟢 Рейнджер</button>
-                <button class="rank-option" data-value="4">🔵 Мастер</button>
-                <button class="rank-option" data-value="5">🟣 Элита</button>
-                <button class="rank-option" data-value="6">💎 Легенда</button>
+                <button type="button" class="rank-option selected" data-value="1">🥈 Серебро</button>
+                <button type="button" class="rank-option" data-value="2">🥇 Золото</button>
+                <button type="button" class="rank-option" data-value="3">🟢 Рейнджер</button>
+                <button type="button" class="rank-option" data-value="4">🔵 Мастер</button>
+                <button type="button" class="rank-option" data-value="5">🟣 Элита</button>
+                <button type="button" class="rank-option" data-value="6">💎 Легенда</button>
             </div>
         </div>
 
@@ -214,7 +240,9 @@
             <p>СТОИМОСТЬ БУСТА</p>
             <h3 id="boostPrice">100 GOLD</h3>
         </div>
+
         <p id="boostMessage"></p>
+
     </div>
 </section>
 
@@ -225,66 +253,83 @@
 </footer>
 
 <script>
-const ranks = {
-    start: 0,
-    end: 1
-};
+(function () {
+    const state = {
+        start: 0,
+        end: 1
+    };
 
-function calculateBoost() {
-    const price = document.getElementById("boostPrice");
-    const message = document.getElementById("boostMessage");
+    const priceElement = document.getElementById("boostPrice");
+    const messageElement = document.getElementById("boostMessage");
 
-    if (ranks.end <= ranks.start) {
-        price.textContent = "0 GOLD";
-        message.textContent = "Выбери ранг выше текущего.";
-        return;
+    function calculateBoost() {
+        const difference = state.end - state.start;
+
+        if (difference <= 0) {
+            priceElement.textContent = "0 GOLD";
+            messageElement.textContent = "Выбери ранг выше текущего.";
+            return;
+        }
+
+        const total = difference * 100;
+
+        priceElement.textContent = total + " GOLD";
+        messageElement.textContent =
+            "Пройдено рангов: " + difference + " × 100 GOLD";
     }
 
-    price.textContent = ((ranks.end - ranks.start) * 100) + " GOLD";
-    message.textContent = "Стоимость рассчитана автоматически.";
-}
+    function setupSelect(id, key) {
+        const select = document.getElementById(id);
+        const trigger = select.querySelector(".select-button");
+        const selectedText = select.querySelector(".selected-text");
+        const options = select.querySelectorAll(".rank-option");
 
-function setupSelect(id, key) {
-    const select = document.getElementById(id);
-    const trigger = select.querySelector(".select-button");
-    const text = select.querySelector(".selected-text");
-    const options = select.querySelectorAll(".rank-option");
+        trigger.addEventListener("click", function () {
+            const wasOpen = select.classList.contains("open");
 
-    trigger.addEventListener("click", () => {
-        document.querySelectorAll(".custom-select").forEach(item => {
-            if (item !== select) item.classList.remove("open");
+            document.querySelectorAll(".custom-select").forEach(item => {
+                item.classList.remove("open");
+            });
+
+            if (!wasOpen) {
+                select.classList.add("open");
+            }
         });
-        select.classList.toggle("open");
-    });
 
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            ranks[key] = Number(option.dataset.value);
-            text.textContent = option.textContent;
+        options.forEach(option => {
+            option.addEventListener("click", function () {
+                state[key] = Number(this.dataset.value);
 
-            options.forEach(item => item.classList.remove("selected"));
-            option.classList.add("selected");
+                selectedText.textContent = this.textContent;
 
-            select.classList.remove("open");
-            calculateBoost();
-        });
-    });
-}
+                options.forEach(item => {
+                    item.classList.remove("selected");
+                });
 
-setupSelect("startSelect", "start");
-setupSelect("endSelect", "end");
+                this.classList.add("selected");
+                select.classList.remove("open");
 
-document.addEventListener("click", event => {
-    if (!event.target.closest(".custom-select")) {
-        document.querySelectorAll(".custom-select").forEach(item => {
-            item.classList.remove("open");
+                calculateBoost();
+            });
         });
     }
-});
 
-calculateBoost();
+    setupSelect("startSelect", "start");
+    setupSelect("endSelect", "end");
+
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".custom-select")) {
+            document.querySelectorAll(".custom-select").forEach(item => {
+                item.classList.remove("open");
+            });
+        }
+    });
+
+    calculateBoost();
+})();
 </script>
 
 <script src="script.js?v=777"></script>
+
 </body>
 </html>
