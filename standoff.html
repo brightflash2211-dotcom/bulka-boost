@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,101 +10,110 @@
 </head>
 <body>
 
-    <div id="snow"></div>
+<div id="snow"></div>
 
-    <header class="header">
-        <a class="logo" href="index.html">
-            BULKA <span>BOOST</span>
-        </a>
+<header class="header">
+    <a class="logo" href="index.html">BULKA <span>BOOST</span></a>
+    <nav class="navigation">
+        <a href="index.html">Главная</a>
+        <a href="standoff.html">Standoff 2</a>
+        <a href="fortnite.html">Fortnite</a>
+        <a href="social.html">Соцсети</a>
+    </nav>
+</header>
 
-        <nav class="navigation">
-            <a href="index.html">Главная</a>
-            <a href="standoff.html">Standoff 2</a>
-            <a href="fortnite.html">Fortnite</a>
-            <a href="social.html">Соцсети</a>
-        </nav>
-    </header>
+<main class="hero">
+    <div class="season">✦ STANDOFF 2 BOOST ✦</div>
+    <h1>ТВОЙ ПУТЬ К<br><span>ВЫСШЕМУ РАНГУ</span></h1>
+    <p>Выбирай желаемый ранг и рассчитывай стоимость буста.</p>
+</main>
 
-    <main class="hero">
-        <div class="season">✦ STANDOFF 2 BOOST ✦</div>
+<section class="features">
+    <div class="feature">
+        <span>🏆</span>
+        <h3>+100 голды</h3>
+        <p>За каждый следующий ранг.</p>
+    </div>
+    <div class="feature">
+        <span>⚡</span>
+        <h3>Быстрый расчёт</h3>
+        <p>Автоматический калькулятор.</p>
+    </div>
+    <div class="feature">
+        <span>❄️</span>
+        <h3>Winter Boost</h3>
+        <p>Зимняя коллекция BULKA BOOST.</p>
+    </div>
+</section>
 
-        <h1>
-            ТВОЙ ПУТЬ К<br>
-            <span>ВЫСШЕМУ РАНГУ</span>
-        </h1>
+<section class="calculator">
+    <div class="season">✦ RANK CALCULATOR ✦</div>
+    <h2>РАССЧИТАЙ СВОЙ <span>БУСТ</span></h2>
 
-        <p>
-            Выбирай желаемый ранг и рассчитывай стоимость буста.
-        </p>
-    </main>
+    <div class="calculator-box">
+        <label for="startRank">Текущий ранг</label>
+        <select id="startRank">
+            <option value="0">Без ранга</option>
+            <option value="1">Серебро</option>
+            <option value="2">Золото</option>
+            <option value="3">Рейнджер</option>
+            <option value="4">Мастер</option>
+            <option value="5">Элита</option>
+            <option value="6">Легенда</option>
+        </select>
 
-    <section class="features">
-        <div class="feature">
-            <span>🏆</span>
-            <h3>+100 голды</h3>
-            <p>Стоимость каждого следующего ранга.</p>
+        <label for="endRank">Желаемый ранг</label>
+        <select id="endRank">
+            <option value="1">Серебро</option>
+            <option value="2">Золото</option>
+            <option value="3">Рейнджер</option>
+            <option value="4">Мастер</option>
+            <option value="5">Элита</option>
+            <option value="6">Легенда</option>
+        </select>
+
+        <div class="price-result">
+            <p>Стоимость буста:</p>
+            <h3 id="boostPrice">100 GOLD</h3>
         </div>
 
-        <div class="feature">
-            <span>⚡</span>
-            <h3>Быстрый расчёт</h3>
-            <p>Удобный калькулятор стоимости.</p>
-        </div>
+        <p id="boostMessage"></p>
+    </div>
+</section>
 
-        <div class="feature">
-            <span>❄️</span>
-            <h3>Winter Boost</h3>
-            <p>Зимняя коллекция BULKA BOOST.</p>
-        </div>
-    </section>
+<footer>
+    <h3>BULKA BOOST</h3>
+    <p>© 2026 · Gaming Rank Service</p>
+    <p>С Новым годом! 🎄</p>
+</footer>
 
-    <section class="calculator">
-        <div class="season">✦ RANK CALCULATOR ✦</div>
+<script>
+const startRank = document.getElementById("startRank");
+const endRank = document.getElementById("endRank");
+const boostPrice = document.getElementById("boostPrice");
+const boostMessage = document.getElementById("boostMessage");
 
-        <h2>РАССЧИТАЙ СВОЙ <span>БУСТ</span></h2>
+function calculateBoost() {
+    const start = Number(startRank.value);
+    const end = Number(endRank.value);
 
-        <div class="calculator-box">
+    if (end <= start) {
+        boostPrice.textContent = "0 GOLD";
+        boostMessage.textContent = "Выбери ранг выше текущего.";
+        return;
+    }
 
-            <label for="startRank">Текущий ранг</label>
+    boostPrice.textContent = ((end - start) * 100) + " GOLD";
+    boostMessage.textContent = "Стоимость рассчитана автоматически.";
+}
 
-            <select id="startRank">
-                <option value="0">Без ранга</option>
-                <option value="1">Серебро</option>
-                <option value="2">Золото</option>
-                <option value="3">Рейнджер</option>
-                <option value="4">Мастер</option>
-                <option value="5">Элита</option>
-                <option value="6">Легенда</option>
-            </select>
+startRank.addEventListener("change", calculateBoost);
+endRank.addEventListener("change", calculateBoost);
 
-            <label for="endRank">Желаемый ранг</label>
+calculateBoost();
+</script>
 
-            <select id="endRank">
-                <option value="1">Серебро</option>
-                <option value="2">Золото</option>
-                <option value="3">Рейнджер</option>
-                <option value="4">Мастер</option>
-                <option value="5">Элита</option>
-                <option value="6">Легенда</option>
-            </select>
-
-            <div class="price-result">
-                <p>Стоимость буста:</p>
-                <h3 id="boostPrice">100 GOLD</h3>
-            </div>
-
-            <p id="boostMessage"></p>
-
-        </div>
-    </section>
-
-    <footer>
-        <h3>BULKA BOOST</h3>
-        <p>© 2026 · Gaming Rank Service</p>
-        <p>С Новым годом! 🎄</p>
-    </footer>
-
-    <script src="script.js?v=777"></script>
+<script src="script.js?v=777"></script>
 
 </body>
 </html>
